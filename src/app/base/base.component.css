@@ -1,0 +1,30 @@
+/* Default icon and text color */
+.icon svg path,
+.icon svg g,
+.icon svg {
+    fill: #A1C15A !important;  /* Default white */
+    stroke: #A1C15A !important;
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-item.d-flex {
+  display: none;  /* Hides any empty nav item that might be causing the issue */
+}
+
+.color-background{
+  color: white !important;
+  background-color: #A1C15A !important;
+  padding: 6px 10px;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Change text color and background on hover */
+.nav-link:hover span,
+.nav-link.active span {
+    color: white !important;
+    background-color: #A1C15A !important;
+    padding: 6px 10px;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
