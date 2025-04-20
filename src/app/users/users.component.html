@@ -1,0 +1,92 @@
+<app-base></app-base>
+<div class="users container-fluid py-4">
+  <div style="margin-bottom: 5px;">
+    <a class="btn custom-outline-green btn-sm mb-0 me-3" routerLink="/adduser">Add User</a>
+  </div>
+<div class="col-12">
+  <div class="card mb-4">
+    <div class="card-header pb-0">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="input-group">
+                <input type="text" class="form-control custom-search-input" placeholder="Search..." (input)="onInputChange($event)">
+
+                    <i class="fas fa-search"></i>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+
+
+
+
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card-header pb-0">
+        <h6>Users</h6>
+      </div>
+      <div class="card-body px-0 pt-0 pb-2">
+        <div class="table-responsive p-0">
+          <table class="table align-items-center mb-0">
+            <thead>
+              <tr>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Firstname</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Lastname</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">UserName</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">CIN</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">BirthDay</th>
+                <th style="width: 100px; text-align: center;">Action</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngIf="!isSpecificUser">
+                <tr *ngFor="let user of users">
+                  <td>{{ user.nom }}</td>
+                  <td>{{ user.prenom }}</td>
+                  <td class="text-center">{{ user.userName }}</td>
+                  <td class="text-center">{{ user.cin }}</td>
+                  <td class="text-center">{{ user.email }}</td>
+                  <td class="text-center">{{ user.dateNaissance | date }}</td>
+                  <!-- Tighten the gap further with bigger negative margins -->
+
+
+                  <td style="text-align: center; padding: 0;">
+                    <img src="/assets/images/Trash.png"
+                         (click)="confirmDelete(user.userName)"
+                         style="width: 20%; height: 20%; margin-right: 8px; cursor: pointer;" alt="Delete" />
+                  </td>
+                </tr>
+              </ng-container>
+
+
+
+            <ng-container *ngIf="isSpecificUser">
+              <tr>
+                <td>{{ user.nom }}</td>
+                <td>{{ user.prenom }}</td>
+                <td class="text-center">{{ user.userName }}</td>
+                <td class="text-center">{{ user.cin }}</td>
+                <td class="text-center">{{ user.email }}</td>
+                <td class="text-center">{{ user.dateNaissance | date }}</td>
+                <td class="text-center" (click)="confirmDelete(user.userName)" style="cursor: pointer;"><i class="fas fa-trash-alt"></i></td>
+                <td class="fas fa-user-edit text-secondary text-sm ms-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Profile" (click)="navigateToUpdate()"></td>
+
+              </tr>
+            </ng-container>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      </div>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+
+

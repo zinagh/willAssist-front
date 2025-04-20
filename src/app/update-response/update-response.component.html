@@ -1,0 +1,46 @@
+<div class="shadowed" (click)="navigateToFaq()">
+  <app-Faq></app-Faq>
+</div>
+
+<div class="update-response-container">
+  <div class="container-fluid py-4" style="width: 100%;">
+    <div class="row" style="width: 100%;">
+      <div class="col-md-8" style="width: 100%;">
+        <div class="card">
+          <div class="card-header pb-0">
+            <div class="d-flex align-items-center justify-content-center">
+              <h2 style="color: #A1C15A !important;">Update Response</h2>
+            </div>
+          </div>
+          <div class="card-body">
+            <form class="p-5 bg-white">
+
+              <h2 class="h4 text-black mb-5 text-center">Update Response</h2>
+
+              <div class="row form-group">
+                <div class="col-md-12 mb-3">
+                  <label class="text-black" for="questionText">Response Text</label>
+                  <input type="text" id="questionText" class="form-control"
+                         [(ngModel)]="updatedResponse.responseText" name="responseText" required>
+                  <div *ngIf="!updatedResponse.responseText" class="text-danger">
+                    Response Text is required
+                  </div>
+                </div>
+              </div>
+
+              <div style="display: flex; justify-content: center;">
+                <button type="button"
+                        class="btn custom-outline-green btn-sm mb-0 me-3"
+                        (click)="updateResponde()"
+                        style="width: 160px;">
+                  Update Response
+                </button>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<div class="shadowed" (click)="navigateToFaq()">
+  <app-Faq></app-Faq>
+</div>
+
+<div class="add-question-container" style="position: absolute; top: 10%; left: 29%; width: 50%;">
+  <div class="container-fluid py-4" style="width: 100%;">
+    <div class="row">
+      <div class="col-md-12 mb-5">
+        <form [formGroup]="questionForm" (ngSubmit)="onSubmit()" class="p-5 bg-white">
+          <h2 style="color: #A1C15A !important; text-align: center;">Add Question</h2>
+
+          <!-- Question Text -->
+          <div class="row form-group">
+            <div class="col-md-12">
+              <label class="text-black" for="questionText">Question Text</label>
+              <input
+                type="text"
+                id="questionText"
+                class="form-control"
+                formControlName="questionText"
+                placeholder="Enter your question here"
+              >
+              <div
+                *ngIf="questionForm.get('questionText')?.invalid && questionForm.get('questionText')?.touched"
+                class="text-danger"
+              >
+                <div *ngIf="questionForm.get('questionText')?.errors?.['required']">
+                  Question text is required.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="row form-group">
+            <div class="col-md-12" style="text-align: right;">
+              <button
+                type="submit"
+                [disabled]="questionForm.invalid"
+                class="btn custom-outline-green btn-sm mb-0 me-3"
+              >
+                Add Question
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

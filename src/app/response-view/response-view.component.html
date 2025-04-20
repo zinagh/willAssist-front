@@ -1,0 +1,30 @@
+<div class="shadowed" (click)="navigateToFaq()">
+  <app-Faq></app-Faq>
+</div>
+
+<div class="response-view-container bg-white p-5">
+  <div class="container-fluid py-4" style="width: 100%;">
+    <div class="row">
+
+        <a [routerLink]="['/updateResponse', response.idReponse]">
+          <img src="/assets/images/update.png"
+          style="width: 3%; height: 55%; margin-left: 98%; cursor: pointer;" alt="Update" />
+        </a>
+
+      <div class="col-md-12">
+
+        <h2 class="response-title">Response Details</h2> <!-- Added class for title -->
+        <div *ngIf="response; else loading" class="mt-4">
+          <h5><strong>Question:</strong> {{ response.question?.questionText }}</h5>
+          <p><strong>Response:</strong> {{ response.responseText }}</p>
+          <p><strong>Created By:</strong> {{ response.createdby }}</p>
+          <p><strong>Creation Date:</strong> {{ response.creationDate | date }}</p>
+        </div>
+        <ng-template #loading>
+          <p>Loading response...</p>
+        </ng-template>
+
+      </div>
+    </div>
+  </div>
+</div>

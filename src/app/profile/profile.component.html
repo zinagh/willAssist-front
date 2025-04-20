@@ -1,0 +1,165 @@
+<app-base></app-base>
+
+<div class="profile">
+  <div class="main-content position-relative bg-gray-100 max-height-vh-100 h-100">
+    <!-- Navbar -->
+    <nav class="navbar navbar-main navbar-expand-lg bg-transparent shadow-none position-absolute px-4 w-100 z-index-2">
+      <div class="container-fluid py-1">
+        <nav aria-label="breadcrumb">
+          <h6 class="text-white font-weight-bolder ms-2">Profile</h6>
+        </nav>
+      </div>
+    </nav>
+    <!-- End Navbar -->
+
+    <div class="container-fluid">
+      <div class="page-header min-height-300 border-radius-xl mt-4"
+           style="background-image: url('../../assets/imgB/Teamwill5.png'); background-size: cover; background-position: center;">
+      </div>
+
+      <div class="card card-body blur shadow-blur mx-4 mt-n6 overflow-hidden">
+        <div class="row gx-4">
+          <div class="col-auto">
+            <div class="avatar avatar-xl position-relative">
+              <img src="../../assets/images/person_1.jpg" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+            </div>
+          </div>
+          <div class="col-auto my-auto">
+            <a class="nav-link" (click)="profile()">
+              {{securityService.profile?.firstName?.toUpperCase()}}
+              {{securityService.profile?.lastName?.toUpperCase()}}
+            </a>
+          </div>
+          <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3">
+            <div class="nav-wrapper position-relative end-0">
+              <ul class="nav nav-pills nav-fill p-1 bg-transparent" role="tablist">
+                <li class="nav-item" style="cursor: pointer;">
+                  <a class="nav-link mb-0 px-0 py-1"
+                     [class.active]="isprofile"
+                     (click)="toprofile()"
+                     role="tab"
+                     aria-selected="true">
+                    <i class="fas fa-user" style="color: #A1C15A !important;"></i>
+                    <span class="ms-1">Profile</span>
+                  </a>
+                </li>
+                <li class="nav-item" style="cursor: pointer;">
+                  <a class="nav-link mb-0 px-0 py-1"
+                     [class.active]="ispassw"
+                     (click)="topassw()"
+                     role="tab"
+                     aria-selected="false">
+                    <i class="fas fa-shield-alt" style="color: #A1C15A !important;"></i>
+                    <span class="ms-1">Access Control</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Profile Section -->
+    <ng-container *ngIf="isprofile">
+      <div class="container-fluid py-4">
+        <div class="row">
+          <div class="col-12 col-xl-12">
+            <div class="card h-100">
+              <div class="card-header pb-0 p-3">
+                <div class="row">
+                  <div class="col-md-8 d-flex align-items-center">
+                    <h6 class="mb-0">Profile Information</h6>
+                  </div>
+                  <td (click)="navigateToUpdate()" style="margin-left: 97%;">
+                    <img src="assets/images/update.png" class="logo-img" style="width: 30px; height: 20px; margin-left: -20px;" />
+                  </td>
+                </div>
+              </div>
+              <div class="card-body p-3" *ngIf="user">
+                <hr class="horizontal gray-light my-4">
+                <ul class="list-group">
+                  <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                    <strong class="text-dark">Full Name:</strong> {{user.nom}}
+                  </li>
+                  <li class="list-group-item border-0 ps-0 text-sm">
+                    <strong class="text-dark">Username:</strong> {{user.userName}}
+                  </li>
+                  <li class="list-group-item border-0 ps-0 text-sm">
+                    <strong class="text-dark">Last Name:</strong> {{user.prenom}}
+                  </li>
+                  <li class="list-group-item border-0 ps-0 text-sm">
+                    <strong class="text-dark">CIN:</strong> {{user.cin}}
+                  </li>
+                  <li class="list-group-item border-0 ps-0 text-sm">
+                    <strong class="text-dark">Email:</strong> {{user.email}}
+                  </li>
+                  <li class="list-group-item border-0 ps-0 text-sm">
+                    <strong class="text-dark">Birthday:</strong> {{user.dateNaissance | date}}
+                  </li>
+                  <li class="list-group-item border-0 ps-0 text-sm">
+                    <strong class="text-dark">Phone Number:</strong> {{user.numTel}}
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <!-- Access Control Section -->
+    <ng-container *ngIf="ispassw">
+      <div class="container-fluid py-4">
+        <div class="row">
+          <div class="col-12 col-xl-12">
+            <div class="card h-100">
+              <div class="card-header pb-0 p-3">
+                <div class="row">
+                  <div class="col-md-8 d-flex align-items-center">
+                    <h6 class="mb-0">Access Control</h6>
+                  </div>
+                  <div class="col-md-4 text-end"></div>
+                </div>
+              </div>
+              <div class="card-body p-3">
+                <form [formGroup]="userForm" class="p-5 bg-white">
+                  <div class="col-md-12">
+                    <label class="text-black" for="password">New Password</label>
+                    <input type="password" id="password" formControlName="password" class="form-control">
+                    <div *ngIf="userForm.get('password')?.invalid && userForm.get('password')?.touched" class="text-danger">
+                      <div *ngIf="userForm.get('password')?.errors?.['required']">
+                        Password is required.
+                      </div>
+                      <div *ngIf="userForm.get('password')?.errors?.['invalidPassword']">
+                        Password must contain at least one uppercase letter, one symbol, and one number.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <label class="text-black" for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" formControlName="confirmPassword" class="form-control">
+                    <div *ngIf="userForm.errors?.['mismatch'] && userForm.get('confirmPassword')?.touched" class="text-danger">
+                      Passwords don't match
+                    </div>
+                  </div>
+                  <div class="row form-group">
+                    <div class="col-md-12" style="margin-left: 80%; margin-top: 3%;">
+                      <button type="button"
+                              [disabled]="userForm.invalid"
+                              class="btn custom-outline-green btn-sm mb-0 me-3"
+                              (click)="confirmUpdate()"
+                              style="width: 160px;">Update Password</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+<app-footer></app-footer>

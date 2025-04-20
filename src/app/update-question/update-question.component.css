@@ -1,0 +1,31 @@
+.shadowed {
+  opacity: 0.3 !important;
+}
+
+.update-question-container{
+  position: relative;
+  top: -600px;
+  left: 30%;
+  width: 50%;
+  height: 50%;
+}
+
+.btn.custom-outline-green {
+  border: 1px solid #A1C15A;
+  color: #A1C15A;
+  background-color: transparent;
+  padding: 6px 12px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.btn.custom-outline-green:hover {
+  background-color: #A1C15A;
+  color: #fff;
+}
+
+.btn.custom-outline-green:disabled {
+  border-color: #ccc;
+  color: #ccc;
+  cursor: not-allowed;
+}

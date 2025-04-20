@@ -1,0 +1,57 @@
+<div class="shadowed" (click)="navigateToFaq()">
+  <app-Faq></app-Faq>
+</div>
+<div class="add-response-container" style="position: absolute; top: 10%; left: 29%; width: 50%;">
+  <div class="container-fluid py-4" style="width: 100%;">
+    <div class="row">
+      <div class="col-md-12 mb-5">
+        <form [formGroup]="responseForm" (ngSubmit)="onSubmit()" class="p-5 bg-white">
+          <h2 style="color: #A1C15A !important; text-align: center;">Add Response</h2>
+
+   <!-- add-response.component.html -->
+<div class="row form-group">
+  <div class="col-md-12">
+    <label class="text-black">Question</label>
+    <p class="form-control-static">{{ question?.questionText || 'Loading question...' }}</p>
+  </div>
+</div>
+
+          <!-- Response Text -->
+          <div class="row form-group">
+            <div class="col-md-12">
+              <label class="text-black" for="responseText">Response Text</label>
+              <textarea
+                id="responseText"
+                class="form-control"
+                formControlName="responseText"
+                placeholder="Enter your response here"
+                rows="5"
+              ></textarea>
+              <div
+                *ngIf="responseForm.get('responseText')?.invalid && responseForm.get('responseText')?.touched"
+                class="text-danger"
+              >
+                <div *ngIf="responseForm.get('responseText')?.errors?.['required']">
+                  Response text is required.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="row form-group">
+            <div class="col-md-12" style="text-align: right;">
+              <button
+                type="submit"
+                [disabled]="responseForm.invalid"
+                class="btn custom-outline-green btn-sm mb-0 me-3"
+              >
+                Add Response
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

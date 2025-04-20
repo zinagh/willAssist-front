@@ -1,0 +1,121 @@
+.profile{
+  margin-left: 250px;
+  max-width: 80%;
+}
+
+/* 🟢 Override Bootstrap primary color */
+:root {
+    --bs-primary: #A1C15A !important;
+    --bs-secondary: #A1C15A !important;
+    --bs-primary-rgb: 161, 193, 90 !important;
+    --bs-secondary-rgb: 161, 193, 90 !important;
+}
+
+/* 🟢 Force all icons & text to stay light green */
+.nav-link .icon svg path,
+.nav-link .icon svg g,
+.nav-link .icon svg,
+.nav-link i,
+.text-secondary {
+    fill: #A1C15A !important;
+    stroke: #A1C15A !important;
+    color: #A1C15A !important;
+}
+
+/* 🟢 Fix .text-secondary (was making icons pink) */
+.text-secondary, .text-secondary i {
+    color: #A1C15A !important;
+}
+
+/* 🟢 Fix .bg-gradient-primary (was pink) */
+.bg-gradient-primary {
+    background: #A1C15A !important;
+}
+
+/* 🟢 Fix active nav pills (they were pink) */
+.nav-pills .nav-link.active {
+    background-color: #A1C15A !important;
+    color: white !important;
+}
+
+/* 🟢 Prevent pink highlights when clicking */
+.nav-link:focus, .nav-link:active {
+    color: #A1C15A !important;
+    background: none !important;
+}
+
+/* 🟢 Fix hover color */
+.nav-link:hover, .nav-item:hover {
+    background: rgba(161, 193, 90, 0.2) !important;
+    color: #A1C15A !important;
+}
+
+/* 🟢 Fix the border color (in case there's a hidden border making pink appear) */
+.border-radius-lg, .shadow-blur {
+    border-color: #A1C15A !important;
+}
+
+
+.nav-link.active {
+  background-color: #A1C15A; /* Background color of the active tab */
+  color: #fff; /* Text color of the active tab */
+  border-color: #A1C15A; /* Border color of the active tab */
+}
+
+
+/* Replace all pink shades with light green */
+.text-secondary, .text-secondary i, .text-sm, .nav-link.active {
+  color: #A1C15A !important;  /* Light Green */
+}
+
+
+/* Replace pinkish highlights */
+.nav-pills .nav-link.active {
+  background-color: #A1C15A !important;
+  color: white !important;
+}
+
+/* Change icons */
+.nav-link i, .fas {
+  color: #A1C15A !important;
+}
+
+/* Profile Edit Icon */
+.fas.fa-user-edit {
+  color: #A1C15A !important;
+}
+
+/* Border highlights */
+.border-radius-lg, .shadow-blur {
+  border-color: #A1C15A !important;
+}
+
+/* Light green hover effects */
+.nav-link:hover, .nav-item:hover {
+  background: rgba(161, 193, 90, 0.2) !important;
+  color: #A1C15A !important;
+}
+
+.custom-green-btn {
+  background-color: #A1C15A !important; /* Light green background */
+  color: white !important; /* White text */
+  border: 2px solid #A1C15A !important; /* Green border */
+}
+
+/* Hover effect */
+.custom-green-btn:hover {
+  background-color: #8FAF4C !important; /* Slightly darker green */
+  border-color: #8FAF4C !important;
+  color: white !important;
+}
+.custom-outline-green {
+  background-color: white !important; /* White background */
+  color: #A1C15A !important; /* Light green text */
+  border: 2px solid #A1C15A !important; /* Light green border */
+  transition: all 0.3s ease-in-out; /* Smooth transition */
+}
+
+
+
+
+

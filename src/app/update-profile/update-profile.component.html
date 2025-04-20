@@ -1,0 +1,78 @@
+<div class="shadowed" (click)="profile()">
+  <app-profile></app-profile>
+</div>
+<div class="update-profile-container">
+  <div class="container-fluid py-4" style="width: 100%;">
+    <div class="row" style="width: 100%;">
+      <div class="col-md-8" style="width: 100%;">
+        <div class="card">
+          <div class="card-header pb-0">
+            <div class="d-flex align-items-center">
+              <div style="text-align: center;">
+                <h2 style="color: #A1C15A !important;">Update Profile</h2>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="userForm" class="p-5 bg-white">
+              <h2 class="h4 text-black mb-5">Update Profile</h2>
+
+              <div class="row form-group">
+                <div class="col-md-6 mb-3 mb-md-0">
+                  <label class="text-black" for="nom">First Name</label>
+                  <input type="text" id="nom" class="form-control" formControlName="nom" required>
+                  <div *ngIf="userForm.controls['nom'].errors?.['required'] && userForm.controls['nom'].touched" class="text-danger">
+                    First Name is required
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label class="text-black" for="prenom">Last Name</label>
+                  <input type="text" id="prenom" class="form-control" formControlName="prenom" required>
+                  <div *ngIf="userForm.controls['prenom'].errors?.['required'] && userForm.controls['prenom'].touched" class="text-danger">
+                    Last Name is required
+                  </div>
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <label class="text-black" for="email">Email</label>
+                  <input type="email" id="email" class="form-control" formControlName="email" required email>
+                  <div *ngIf="userForm.controls['email'].errors?.['required'] && userForm.controls['email'].touched" class="text-danger">
+                    Email is required
+                  </div>
+                  <div *ngIf="userForm.controls['email'].errors?.['email'] && userForm.controls['email'].touched" class="text-danger">
+                    Invalid email format
+                  </div>
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-6">
+                  <label class="text-black" for="cin">CIN</label>
+                  <input type="text" id="cin" class="form-control" formControlName="cin" pattern="[0-9]{8}">
+                  <div *ngIf="userForm.controls['cin'].errors?.['pattern'] && userForm.controls['cin'].touched" class="text-danger">
+                    CIN must be 8 digits
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3 mb-md-0">
+                  <label class="text-black" for="numTel">Phone Number</label>
+                  <input type="text" id="numTel" class="form-control" formControlName="numTel" pattern="[0-9]{8}">
+                  <div *ngIf="userForm.controls['numTel'].errors?.['pattern'] && userForm.controls['numTel'].touched" class="text-danger">
+                    Phone Number must be 8 digits
+                  </div>
+                </div>
+              </div>
+
+              <div style="display: flex; justify-content: center;">
+                <button type="button" class="btn custom-outline-green btn-sm mb-0 me-3" (click)="confirmUpdate()" style="width: 160px;">
+                  Update Profile
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,148 @@
+<div class="shadowed" (click)="navigateTousers()">
+  <app-users></app-users>
+</div>
+
+<div class="add-user-container" style="position: absolute; top: 10%; left: 29%; width: 50%;">
+  <div class="container-fluid py-4" style="width: 100%;">
+    <div class="row">
+      <div class="col-md-12 mb-5">
+        <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="p-5 bg-white">
+          <h2 style="color: #A1C15A !important; text-align: center;">Add User</h2>
+
+          <!-- First Step: Personal Information -->
+          <ng-container *ngIf="!isNext">
+            <!-- First Name and Last Name -->
+            <div class="row form-group">
+              <div class="col-md-6">
+                <label class="text-black" for="nom">First Name</label>
+                <input type="text" id="nom" class="form-control" formControlName="nom">
+                <div *ngIf="userForm.get('nom')?.invalid && userForm.get('nom')?.touched" class="text-danger">
+                  <div *ngIf="userForm.get('nom')?.errors?.['required']">First Name is required.</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label class="text-black" for="prenom">Last Name</label>
+                <input type="text" id="prenom" class="form-control" formControlName="prenom">
+                <div *ngIf="userForm.get('prenom')?.invalid && userForm.get('prenom')?.touched" class="text-danger">
+                  <div *ngIf="userForm.get('prenom')?.errors?.['required']">Last Name is required.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="row form-group">
+              <div class="col-md-12">
+                <label class="text-black" for="email">Email</label>
+                <input type="email" id="email" class="form-control" formControlName="email">
+                <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched" class="text-danger">
+                  <div *ngIf="userForm.get('email')?.errors?.['required']">Email is required.</div>
+                  <div *ngIf="userForm.get('email')?.errors?.['email']">Invalid email format.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Phone Number -->
+            <div class="row form-group">
+              <div class="col-md-12">
+                <label class="text-black" for="numTel">Phone Number</label>
+                <input type="text" id="numTel" class="form-control" formControlName="numTel">
+                <div *ngIf="userForm.get('numTel')?.invalid && userForm.get('numTel')?.touched" class="text-danger">
+                  <div *ngIf="userForm.get('numTel')?.errors?.['required']">Phone number is required.</div>
+                  <div *ngIf="userForm.get('numTel')?.errors?.['pattern']">Phone number must be 8 digits.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Date of Birth and CIN -->
+            <div class="row form-group">
+              <div class="col-md-6">
+                <label class="text-black" for="dateNaissance">Date of Birth</label>
+                <input type="date" id="dateNaissance" class="form-control" formControlName="dateNaissance">
+                <div *ngIf="userForm.get('dateNaissance')?.errors?.['underage'] && userForm.get('dateNaissance')?.touched" class="text-danger">
+                  You must be at least 18 years old.
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label class="text-black" for="cin">CIN</label>
+                <input type="text" id="cin" class="form-control" formControlName="cin" pattern="[0-9]{8}">
+                <div *ngIf="userForm.get('cin')?.errors?.['pattern'] && userForm.get('cin')?.touched" class="text-danger">
+                  CIN must be 8 digits.
+                </div>
+              </div>
+            </div>
+
+            <!-- Next Button -->
+            <div class="row form-group">
+              <div class="col-md-12" style="text-align: right;">
+                <button (click)="switchToNext()" class="btn custom-outline-green btn-sm mb-0 me-3">Next</button>
+              </div>
+            </div>
+          </ng-container>
+
+          <!-- Second Step: Account Information -->
+          <ng-container *ngIf="isNext">
+            <!-- Username -->
+            <div class="row form-group">
+              <div class="col-md-12">
+                <label class="text-black" for="userName">Username</label>
+                <input type="text" id="userName" class="form-control" formControlName="userName">
+                <div *ngIf="userForm.get('userName')?.invalid && userForm.get('userName')?.touched" class="text-danger">
+                  <div *ngIf="userForm.get('userName')?.errors?.['required']">Username is required.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Password and Confirm Password -->
+            <div class="row form-group">
+              <div class="col-md-12">
+                <label class="text-black" for="password">New Password</label>
+                <input type="password" id="password" class="form-control" formControlName="password">
+                <div *ngIf="userForm.get('password')?.invalid && userForm.get('password')?.touched" style="color: black;">
+                  <div *ngIf="userForm.get('password')?.errors?.['required']">Password is required.</div>
+                  <div *ngIf="userForm.get('password')?.errors?.['invalidPassword']">
+                    Password must contain at least one uppercase letter, one symbol, and one number.
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <label class="text-black">Confirm Password</label>
+                <input type="password" id="passwordConfirm" (input)="onInputChange($event)" class="form-control"
+                       [style.border-color]="confirmPassword !== '' && confirmPassword !== userForm.get('password')?.value ? 'red' : 'green'">
+              </div>
+              <div class="col-md-12">
+                <ng-container *ngIf="confirmPassword !== '' && confirmPassword !== userForm.get('password')?.value && userForm.get('password')?.touched">
+                  <p style="color: red;">Passwords don't match*</p>
+                </ng-container>
+                <ng-container *ngIf="confirmPassword !== '' && confirmPassword === userForm.get('password')?.value && userForm.get('password')?.touched">
+                  <p style="color: green;">Passwords match</p>
+                </ng-container>
+              </div>
+            </div>
+
+            <!-- Role -->
+            <div class="row form-group">
+              <div class="col-md-12">
+                <label class="text-black">Role</label>
+                <select formControlName="role" class="form-control">
+                  <option [value]="" disabled selected>Choose a role</option>
+                  <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+                </select>
+                <div *ngIf="userForm.get('role')?.invalid && userForm.get('role')?.touched" class="text-danger">
+                  <div *ngIf="userForm.get('role')?.errors?.['required']">Role is required.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Previous and Register Buttons -->
+            <div class="row form-group">
+              <div class="col-md-12" style="text-align: right;">
+                <button (click)="switchToNext()" class="btn custom-outline-green btn-sm mb-0 me-3">Previous</button>
+                <button type="submit" [disabled]="userForm.invalid" class="btn custom-outline-green btn-sm mb-0 me-3">Register</button>
+              </div>
+            </div>
+          </ng-container>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

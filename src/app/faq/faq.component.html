@@ -1,0 +1,78 @@
+<app-base></app-base>
+<div class="Faq">
+
+  <!-- Bouton Ajouter une question -->
+  <div style="margin-bottom: 5px; margin-left: 3%;">
+    <a class="btn custom-outline-green btn-sm mb-0 me-3" routerLink="/addQuestion">Add Question</a>
+  </div>
+
+  <!-- Barre de recherche -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card-header pb-0">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="input-group">
+            <input type="text" class="form-control custom-search-input" placeholder="Search..." (input)="onInputChange($event)">
+            <i class="fas fa-search"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tableau des questions -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card-header pb-0">
+        <h6>Frequently Asked Questions</h6>
+      </div>
+      <div class="card-body px-0 pt-0 pb-2">
+        <div class="table-responsive p-0">
+          <table class="table align-items-center mb-0">
+            <thead>
+              <tr>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Question</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Created By</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Creation Date</th>
+                <th style="width: 100px; text-align: center;">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngIf="!isSpecificUser">
+                <tr *ngFor="let question of questions">
+                  <td>{{ question.questionText }}</td>
+                  <td class="text-center">{{ question.createdby }}</td>
+                  <td class="text-center">{{ question.creationDate | date }}</td>
+                  <td style="text-align: center; padding: 0;">
+                    <img src="/assets/images/Trash.png"
+                         (click)="confirmDelete(question.idQuestion)"
+                         style="width: 20%; height: 20%; margin-right: 8px; cursor: pointer;" alt="Delete" />
+
+                    <a [routerLink]="['/response', question.idQuestion]">
+                      <img src="/assets/images/view.png"
+                           style="width: 20%; height: 20%; cursor: pointer;" alt="View" />
+                    </a>
+                    <a [routerLink]="['/updateQuestion', question.idQuestion]">
+                      <img src="/assets/images/update.png"
+                           style="width: 20%; height: 20%; margin-left: 10px; cursor: pointer;" alt="Update" />
+                    </a>
+
+                  </td>
+
+
+
+
+
+                </tr>
+              </ng-container>
+
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<app-footer></app-footer>

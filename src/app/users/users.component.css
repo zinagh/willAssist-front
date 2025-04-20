@@ -1,0 +1,60 @@
+.users{
+  margin-left: 250px;
+  max-width: 80%;
+}
+.custom-green-btn {
+  background-color: #A1C15A !important; /* Light green background */
+  color: white !important; /* White text */
+  border: 2px solid #A1C15A !important; /* Green border */
+}
+
+/* Hover effect */
+.custom-green-btn:hover {
+  background-color: #8FAF4C !important; /* Slightly darker green */
+  border-color: #8FAF4C !important;
+  color: white !important;
+}
+.custom-outline-green {
+  background-color: white !important; /* White background */
+  color: #A1C15A !important; /* Light green text */
+  border: 2px solid #A1C15A !important; /* Light green border */
+  transition: all 0.3s ease-in-out; /* Smooth transition */
+}
+
+/* Hover effect - turns fully light green */
+.custom-outline-green:hover {
+  background-color: #A1C15A !important; /* Light green background */
+  color: white !important; /* White text */
+  border-color: #A1C15A !important; /* Keep the border same as background */
+}
+
+
+/* Ensure search input has a light green border */
+.custom-search-input {
+  border: 2px solid #A1C15A !important;
+  color: #333 !important; /* Dark text for readability */
+  background-color: white !important;
+  outline: none !important;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Ensure search button has a light green border and stays light green */
+.custom-search-btn {
+  border: 2px solid #A1C15A !important;
+  color: #A1C15A !important;
+  background-color: white !important;
+  font-weight: bold !important;
+  transition: all 0.3s ease-in-out;
+}
+
+/* 🔹 Keep the search button and input light green even on focus/click */
+.custom-search-input:focus,
+.custom-search-input:active,
+.custom-search-btn:focus,
+.custom-search-btn:active {
+  border-color: #A1C15A !important;
+  color: #A1C15A !important;
+  background-color: white !important;
+  box-shadow: none !important; /* Remove default focus shadow */
+}
+
